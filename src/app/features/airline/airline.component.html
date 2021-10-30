@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>Airline Information</h2>
+      </div>
+      <div class="col-sm-4">
+        <input type="text" #movieSearchInput class="form-control" placeholder="Search" />
+      </div>
+    </div>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Airline logo</th>
+          <th>Airline name</th>
+          <th>Outbound flight duration</th>
+          <th>Inbound flight duration</th>
+          <th>Total amount in USD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of airlineInfoList; let i = index; trackBy: trackByFn">            
+          <td><img src="{{ item.AirlineLogoAddress }}" alt="Airline logo"></td>
+          <td>{{ item.AirlineName }}</td>
+          <td>{{ item.InboundFlightsDuration }}</td>
+          <td>{{ item.OutboundFlightsDuration }}</td>
+          <td>{{ item.TotalAmount | currency }}</td>          
+        </tr>                    
+      </tbody>
+    </table>
+  </div>
+</div>
