@@ -2,21 +2,21 @@
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-8">
-        <h2>Airline Information</h2>
+        <h2>{{ langService.langData.airlineInformation }}</h2>
       </div>
       <div class="col-sm-4">
-        <input type="text" #movieSearchInput class="form-control" placeholder="Search" />
+        <input type="text" #itemSearchInput class="form-control" placeholder="Search" />
       </div>
     </div>
     <br>
     <table class="table">
       <thead>
         <tr>
-          <th>Airline logo</th>
-          <th>Airline name</th>
-          <th>Outbound flight duration</th>
-          <th>Inbound flight duration</th>
-          <th>Total amount in USD</th>
+          <th>{{ langService.langData.airlineLogo }}</th>
+          <th>{{ langService.langData.airlineName }}</th>
+          <th>{{ langService.langData.outboundFlightDuration }}</th>
+          <th>{{ langService.langData.inboundFlightDuration }}</th>
+          <th>{{ langService.langData.totalAmountInUSD }}</th>
         </tr>
       </thead>
       <tbody>

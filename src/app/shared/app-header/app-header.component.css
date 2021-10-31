@@ -1,0 +1,12 @@
+.navbar-nav{
+    display: block !important;
+    text-align: right;
+}
+ul.navbar-nav li{
+    margin: 0 6px;
+    
+}
+ul.navbar-nav li, ul.navbar-nav li a {
+    display: inline;
+    cursor: pointer;
+}

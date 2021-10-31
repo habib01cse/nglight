@@ -3,10 +3,10 @@
     <div class="col-sm-6">        
         <div class="row">
             <div class="col-sm-9">
-                <h2>User Information</h2>
+                <h2>{{ langService.langData.userInformation }}</h2>
             </div>
             <div class="col-sm-3 text-right">
-                <button type="submit" class="btn btn-primary" (click)="addNew()">Add New</button>        
+                <button type="submit" class="btn btn-primary" (click)="addNew()">{{ langService.langData.addNew }}</button>        
             </div>
         </div>
 
@@ -14,38 +14,38 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label>Departure airport code</label>
+                        <label>{{ langService.langData.departureAirportCode }}</label>
                         <input type="text" class="form-control" formControlName="DepartureAirportCode" maxlength="3"
                         (keypress)="keyPressAlphanumeric($event)"
                         >                        
-                        <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character</small>                                                
+                        <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small>                                                
                     </div>
                 </div>
 
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Departure airport code</label>
+                        <label for="exampleInputEmail1">{{ langService.langData.arrivalAirportCode }}</label>
                         <input type="text" class="form-control" formControlName="ArrivalAirportCode" maxlength="3"
                         (keypress)="keyPressAlphanumeric($event)"
                         >                         
-                        <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character</small>
+                        <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Departure date</label>
+                        <label for="exampleInputEmail1">{{ langService.langData.departureDate }}</label>
                         <input type="datetime-local" class="form-control" formControlName="DepartureDate">         
                     </div>
                 </div>
 
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Return date</label>
+                        <label for="exampleInputEmail1">Return date {{ langService.langData.returnDate }}</label>
                         <input type="datetime-local" class="form-control" formControlName="ReturnDate">         
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">{{ langService.langData.submit }}</button>
                </div>
             </div>
         </form>

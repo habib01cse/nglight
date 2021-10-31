@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { LanguageResolver } from './core/services/language-resolver';
+import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 
-import { AppComponent } from './app.component';
 import { AirlineComponent } from './features/airline/airline.component';
 import { UsersComponent } from './features/users/users.component';
 
@@ -32,7 +32,7 @@ import { UsersComponent } from './features/users/users.component';
     CoreModule,
     SharedModule
   ],
-  providers: [],
+  providers: [LanguageResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

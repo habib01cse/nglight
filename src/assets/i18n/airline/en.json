@@ -1,0 +1,8 @@
+{
+    "airlineLogo": "Airline logo",
+    "airlineName": "Airline name",
+    "outboundFlightDuration": "Outbound flight duration",
+    "inboundFlightDuration": "Inbound flight duration",
+    "totalAmountInUSD": "Total amount in USD",
+    "airlineInformation": "Airline Information"
+}

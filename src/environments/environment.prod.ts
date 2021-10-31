@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  ASSET_HOST: window['__env']['ASSET_HOST']
 };

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,  } from '@angular/forms';
 import { DataService } from 'src/app/features/users/services/data.service';
+import { LangService } from "src/app/core/services/lang.service";
 
 @Component({
   selector: 'app-users',
@@ -13,6 +14,7 @@ export class UsersComponent implements OnInit {
   userData: FormGroup;
   constructor(
     public formBuilder: FormBuilder
+    , public langService: LangService
     , public dtService: DataService,
     ){
     
@@ -23,7 +25,7 @@ export class UsersComponent implements OnInit {
   }
 
   addNew(){
-    this.setDefaultValue();    
+    this.setValidtion();
   }
 
   setDefaultValue(){
@@ -59,12 +61,10 @@ export class UsersComponent implements OnInit {
 
   }
 
-
   postDate(){   
     this.dtService.create(this.userData.value).subscribe(res =>{
       console.log('res', res);
     })
-
   }
 
 }

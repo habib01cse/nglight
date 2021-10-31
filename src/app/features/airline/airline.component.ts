@@ -1,31 +1,35 @@
 import { Component,  ViewChild, ElementRef, OnInit, OnDestroy  } from '@angular/core';
 import { DataService } from 'src/app/features/airline/services/data.service';
-import { Subscription, of, fromEvent } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime, map, distinctUntilChanged, filter } from "rxjs/operators";
+import { LangService } from "src/app/core/services/lang.service";
 
 @Component({
   selector: 'app-airline',
   templateUrl: './airline.component.html',
   styleUrls: ['./airline.component.css']
 })
-export class AirlineComponent implements OnInit {
+export class AirlineComponent implements OnInit, OnDestroy {
   airlineInfoList: any = [];
   airlineSubscription!: Subscription;
   keyPressEvnSubscription!: Subscription;
 
-  @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
+  @ViewChild('itemSearchInput', { static: true }) itemSearchInput: ElementRef;
   apiResponse: any;
 
-  constructor( public dtService: DataService )
+  constructor( 
+    public dtService: DataService
+    , public langService: LangService  )
   {
     this.apiResponse = [];
-    console.log('const', this.movieSearchInput);          
+    console.log('const', this.itemSearchInput);          
   }
   ngOnInit(): void{
+    // this.langService.langData.action
     this.getAirlineInfoList();
 
-    console.log('init', this.movieSearchInput);
-    this.keyPressEvnSubscription = fromEvent(this.movieSearchInput.nativeElement, 'keyup').pipe(     
+    console.log('init', this.itemSearchInput);
+    this.keyPressEvnSubscription = fromEvent(this.itemSearchInput.nativeElement, 'keyup').pipe(     
       // get value
       map((event: any) => {       
         return event.target.value;
@@ -63,10 +67,9 @@ export class AirlineComponent implements OnInit {
   trackByFn(index, item) {
 		return index; // or item.id
 	}
-  ngOnDestroy() {
-      // unsubscribe to avoid memory leaks
-      this.airlineSubscription.unsubscribe();    
-      this.keyPressEvnSubscription.unsubscribe();    
+  ngOnDestroy() {      
+    this.airlineSubscription.unsubscribe();    
+    this.keyPressEvnSubscription.unsubscribe();    
   }
 
 }

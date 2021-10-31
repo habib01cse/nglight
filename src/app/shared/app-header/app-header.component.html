@@ -3,7 +3,11 @@
     <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a class="nav-link"  routerLink="/''">Sign out</a>
+        <a class="nav-link" [class.active]="currentLanguageActive == 'en'"  (click)="onChangeLanguage('en')">EN</a>         
+      </li> 
+      <li class="nav-item text-nowrap nav-link">|</li>
+      <li class="nav-item text-nowrap">       
+        <a class="nav-link" [class.active]="currentLanguageActive == 'de'"  (click)="onChangeLanguage('de')">DE</a>
       </li>
     </ul>
   </nav>
