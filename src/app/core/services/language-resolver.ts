@@ -22,6 +22,8 @@ export class LanguageResolver implements Resolve<any> {
     
     return this.i18nService.getLanguageData(`${route.routeConfig.path}/${globalVariables.currentLanguage}`).pipe(
       map((dataFromApi) => {
+
+        console.log('dataFromApi', dataFromApi);
         globalVariables.currentLanguageData = dataFromApi;
         this.langService.changeLang();
         return dataFromApi;
