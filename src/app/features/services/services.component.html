@@ -1,0 +1,154 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Services</h2>
+      </div>
+      <div class="col-sm-4">
+        <input type="text" #itemSearchInput class="form-control" placeholder="Search" />
+      </div>
+      <div class="col-sm-2">
+        <div class="col-sm-3 text-right">
+            <button type="submit" class="btn btn-primary" (click)="openModalAdd(templateAdd); formInit()">Add New</button>        
+        </div>
+      </div>
+    </div>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Charge</th>
+          <th>Action</th>            
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of services; let i = index; trackBy: trackByFn">                        
+          <td>{{ item?.name }}</td>
+          <td>{{ item?.cat }}</td>
+          <td>{{ item?.charge | currency }}</td> 
+          <td>
+              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="openModalEditServices(template)">Edit</button>
+              <button type="button" class="btn btn-danger btn-sm">Delete</button>
+          </td>                               
+        </tr>                    
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #templateAdd>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Services</h4>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">        
+            <div class="row">
+                <div class="col-sm-9">
+                    <h2>Add Services</h2>
+                </div>                
+            </div>
+    
+            <form [formGroup]="formData" (ngSubmit)="postDate()">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" formControlName="name"                            
+                            >                        
+                            <!-- <small class="text-danger" *ngIf="formData.get('name').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small> -->
+                        </div>
+                    </div>    
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category</label>
+                            <input type="text" class="form-control" formControlName="cat"                            
+                            >                         
+                            <!-- <small class="text-danger" *ngIf="formData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Charge</label>
+                            <input type="text" class="form-control" formControlName="charge">         
+                        </div>
+                    </div>
+                       
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Services</h4>
+    <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">        
+            <div class="row">
+                <div class="col-sm-9">
+                    <h2>Add Services</h2>
+                </div>                
+            </div>
+    
+            <form [formGroup]="formData" (ngSubmit)="postDate()">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" formControlName="name"                            
+                            >                        
+                            <!-- <small class="text-danger" *ngIf="formData.get('name').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small> -->
+                        </div>
+                    </div>    
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category</label>
+                            <input type="text" class="form-control" formControlName="cat" maxlength="3"                            
+                            >                         
+                            <!-- <small class="text-danger" *ngIf="formData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Charge</label>
+                            <input type="text" class="form-control" formControlName="charge">         
+                        </div>
+                    </div>
+                       
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+  </div>
+</ng-template>
+
+  
+
+
+

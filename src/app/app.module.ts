@@ -5,6 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+
+
 import { LanguageResolver } from './core/services/language-resolver';
 import { AppComponent } from './app.component';
 
@@ -28,6 +33,7 @@ import { UsersComponent } from './features/users/users.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ModalModule.forRoot(),
     ReactiveFormsModule,
     CoreModule,
     SharedModule

@@ -1,0 +1,9 @@
+{
+    "userInformation": "informations de l'utilisateur",
+    "departureAirportCode": "Code de l'aéroport de départ",
+    "arrivalAirportCode": "Code de l'aéroport d'arrivée",
+    "departureDate": "Date de départ",
+    "returnDate": "Date de retour",
+    "addNew":"Ajouter un nouveau",
+    "submit": "Soumettre"
+}

@@ -1,4 +1,5 @@
 import { Component,  ViewChild, ElementRef, OnInit, OnDestroy  } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/app/features/airline/services/data.service';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime, map, distinctUntilChanged, filter } from "rxjs/operators";
@@ -10,6 +11,8 @@ import { LangService } from "src/app/core/services/lang.service";
   styleUrls: ['./airline.component.css']
 })
 export class AirlineComponent implements OnInit, OnDestroy {
+  formData: FormGroup;
+
   airlineInfoList: any = [];
   airlineSubscription!: Subscription;
   keyPressEvnSubscription!: Subscription;
@@ -19,6 +22,7 @@ export class AirlineComponent implements OnInit, OnDestroy {
 
   constructor( 
     public dtService: DataService
+    , public formBuilder: FormBuilder
     , public langService: LangService  )
   {
     this.apiResponse = [];
@@ -46,7 +50,9 @@ export class AirlineComponent implements OnInit, OnDestroy {
       // subscription for response
     ).subscribe((searchTerm: string) => {          
       this.search(searchTerm)
-    });    
+    });  
+    
+    this.formInit();
   }
   search(term){    
     if(term){      
@@ -71,5 +77,30 @@ export class AirlineComponent implements OnInit, OnDestroy {
     this.airlineSubscription.unsubscribe();    
     this.keyPressEvnSubscription.unsubscribe();    
   }
+
+  formInit(){
+    this.setValidtion();
+  }
+
+  setValidtion(){
+    //const validPattern = "^[a-zA-Z0-9]{10}$";
+    //Validators.pattern(validPattern)]
+    this.formData = this.formBuilder.group({
+      name:  ['', [ Validators.maxLength(3)]],
+      cat: ['', [Validators.maxLength(3)]],
+      price: new FormControl(),
+    });
+  }
+
+  postDate(){ 
+    // e.preventDefatul();
+    // console.log('e', e);
+
+    console.log('this.formData.value', this.formData.value); 
+    console.log('this.formData', this.formData);     
+  }
+
+
+
 
 }

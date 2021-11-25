@@ -4,6 +4,8 @@ let supportedLanguages: [
     'fr-FR'
 ];
 
+let userInfo = {}
+
 // version
 let currentModule = ''; //l
 let currentModuleURL = '';
