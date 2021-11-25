@@ -21,50 +21,9 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void{    
-    this.setValidtion();
+    //this.setValidtion();
   }
 
-  addNew(){
-    this.setValidtion();
-  }
-
-  setDefaultValue(){
-    this.userData = this.formBuilder.group({
-      DepartureAirportCode: new FormControl(),
-      ArrivalAirportCode: new FormControl(),
-      DepartureDate: new FormControl(),
-      ReturnDate: new FormControl()
-    });
-  }
-
-  setValidtion(){
-    const validPattern = "^[a-zA-Z0-9]{10}$";
-    this.userData = this.formBuilder.group({
-      DepartureAirportCode:  ['',[ Validators.maxLength(3), Validators.pattern(validPattern)]],
-      ArrivalAirportCode: ['', [Validators.maxLength(3), , Validators.pattern(validPattern)]],
-      DepartureDate: new FormControl(),
-      ReturnDate: new FormControl()
-    });
-  }
-
-  // Only AlphaNumeric
-  keyPressAlphanumeric(event) {
-
-    var inp = String.fromCharCode(event.keyCode);
-
-    if (/[a-zA-Z0-9]/.test(inp)) {
-      return true;
-    } else {
-      event.preventDefault();
-      return false;
-    }
-
-  }
-
-  postDate(){   
-    this.dtService.create(this.userData.value).subscribe(res =>{
-      console.log('res', res);
-    })
-  }
+  
 
 }

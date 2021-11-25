@@ -4,5 +4,12 @@
     "outboundFlightDuration": "Outbound flight duration",
     "inboundFlightDuration": "Inbound flight duration",
     "totalAmountInUSD": "Total amount in USD",
-    "airlineInformation": "Airline Information"
+    "airlineInformation": "Airline Information",
+    "userInformation": "User Information",
+    "departureAirportCode": "Departure airport code",
+    "arrivalAirportCode": "Arrival airport code",
+    "departureDate": "Departure date",
+    "returnDate": "Return date",
+    "addNew":"Add New",
+    "submit": "Submit"
 }

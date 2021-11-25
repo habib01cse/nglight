@@ -12,4 +12,7 @@ export class DataService {
   getAll():any {
     return this.apiService.getFileData(baseUrl);
   }
+  create(data):any{
+    return this.apiService.save(baseUrl, data);
+  }
 }

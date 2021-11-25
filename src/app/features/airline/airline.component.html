@@ -1,45 +1,61 @@
 <div class="row">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-6">
-       <form [formGroup]="formData" (ngSubmit)="postDate()">
-           <div class="row">
-               <div class="col-sm-12">
-                   <div class="form-group">
-                       <label>Name</label>
-                       <input type="text" class="form-control" formControlName="name"                            
-                       >                        
-                       <!-- <small class="text-danger" *ngIf="formData.get('name').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small> -->
-                   </div>
-               </div>    
-               <div class="col-sm-12">
-                   <div class="form-group">
-                       <label for="exampleInputEmail1">Category</label>
-                       <input type="text" class="form-control" formControlName="cat"                            
-                       >                         
-                       <!-- <small class="text-danger" *ngIf="formData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small> -->
-                   </div>
-               </div>
-               <div class="col-sm-12">
-                   <div class="form-group">
-                       <label for="exampleInputEmail1">Price</label>
-                       <input type="text" class="form-control" formControlName="price">         
-                   </div>
-               </div>
-               
-               <div class="col-sm-12">
-                   <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="col-sm-4">        
+    <div class="row">
+        <div class="col-sm-9">
+            <h4>{{ langService.langData.userInformation }}</h4>
+        </div>
+        <div class="col-sm-3 text-right">
+            <button type="submit" class="btn btn-primary" (click)="addNew()">{{ langService.langData.addNew }}</button>        
+        </div>
+    </div>
+
+    <form [formGroup]="userData" (ngSubmit)="postDate()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>{{ langService.langData.departureAirportCode }}</label>
+                    <input type="text" class="form-control" formControlName="DepartureAirportCode" maxlength="3"
+                    (keypress)="keyPressAlphanumeric($event)"
+                    >                        
+                    <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small>                                                
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{ langService.langData.arrivalAirportCode }}</label>
+                    <input type="text" class="form-control" formControlName="ArrivalAirportCode" maxlength="3"
+                    (keypress)="keyPressAlphanumeric($event)"
+                    >                         
+                    <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">{{ langService.langData.departureDate }}</label>
+                    <input type="datetime-local" class="form-control" formControlName="DepartureDate">         
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Return date {{ langService.langData.returnDate }}</label>
+                    <input type="datetime-local" class="form-control" formControlName="ReturnDate">         
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary">{{ langService.langData.submit }}</button>
            </div>
-           </div>
-       </form>
-  </div>
+        </div>
+    </form>
+    
 </div>
 
 
-<div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-8">
     <div class="row">
       <div class="col-sm-8">
-        <h2>{{ langService.langData.airlineInformation }}</h2>
+        <h4>{{ langService.langData.airlineInformation }}</h4>
       </div>
       <div class="col-sm-4">
         <input type="text" #itemSearchInput class="form-control" placeholder="Search" />

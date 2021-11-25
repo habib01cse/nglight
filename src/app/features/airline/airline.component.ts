@@ -11,7 +11,7 @@ import { LangService } from "src/app/core/services/lang.service";
   styleUrls: ['./airline.component.css']
 })
 export class AirlineComponent implements OnInit, OnDestroy {
-  formData: FormGroup;
+  userData: FormGroup;
 
   airlineInfoList: any = [];
   airlineSubscription!: Subscription;
@@ -82,24 +82,48 @@ export class AirlineComponent implements OnInit, OnDestroy {
     this.setValidtion();
   }
 
-  setValidtion(){
-    //const validPattern = "^[a-zA-Z0-9]{10}$";
-    //Validators.pattern(validPattern)]
-    this.formData = this.formBuilder.group({
-      name:  ['', [ Validators.maxLength(3)]],
-      cat: ['', [Validators.maxLength(3)]],
-      price: new FormControl(),
+  addNew(){
+    this.setValidtion();
+  }
+
+  setDefaultValue(){
+    this.userData = this.formBuilder.group({
+      DepartureAirportCode: new FormControl(),
+      ArrivalAirportCode: new FormControl(),
+      DepartureDate: new FormControl(),
+      ReturnDate: new FormControl()
     });
   }
 
-  postDate(){ 
-    // e.preventDefatul();
-    // console.log('e', e);
-
-    console.log('this.formData.value', this.formData.value); 
-    console.log('this.formData', this.formData);     
+  setValidtion(){
+    const validPattern = "^[a-zA-Z0-9]{10}$";
+    this.userData = this.formBuilder.group({
+      DepartureAirportCode:  ['',[ Validators.maxLength(3), Validators.pattern(validPattern)]],
+      ArrivalAirportCode: ['', [Validators.maxLength(3), , Validators.pattern(validPattern)]],
+      DepartureDate: new FormControl(),
+      ReturnDate: new FormControl()
+    });
   }
 
+  // Only AlphaNumeric
+  keyPressAlphanumeric(event) {
+
+    var inp = String.fromCharCode(event.keyCode);
+
+    if (/[a-zA-Z0-9]/.test(inp)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+
+  }
+
+  postDate(){   
+    this.dtService.create(this.userData.value).subscribe(res =>{
+      console.log('res', res);
+    })
+  }
 
 
 
