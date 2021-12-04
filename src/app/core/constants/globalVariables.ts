@@ -6,6 +6,15 @@ let supportedLanguages: [
 
 let userInfo = {}
 
+let bsDatecolorTheme = 'theme-blue'
+
+let bsDatePickerOp = {
+    showWeekNumbers: false,
+    dateInputFormat: "DD/MM/YYYY",
+    containerClass: 'theme-blue'
+}
+
+
 // version
 let currentModule = ''; //l
 let currentModuleURL = '';
@@ -17,6 +26,8 @@ export const globalVariables: any = {
     currentModuleURL: currentModuleURL,
     currentRouter: currentRouter,
     currentLanguage: currentLanguage,
-    currentLanguageData: currentLanguageData   
+    currentLanguageData: currentLanguageData, 
+    
+    bsDatePickerOp: bsDatePickerOp,
    
 }

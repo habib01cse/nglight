@@ -1,10 +1,15 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 import { DataService } from 'src/app/features/users/services/data.service';
 import { LangService } from "src/app/core/services/lang.service";
+import { DateService } from "src/app/shared/utility/date.service";
+
 
 // import custom validator to validate that password and confirm password fields match
 import { MustMatch } from "src/app/shared/_helpers/must-match.validator";
+import { globalVariables } from 'src/app/core/constants/globalVariables';
 
 @Component({
   selector: 'app-users',
@@ -13,6 +18,9 @@ import { MustMatch } from "src/app/shared/_helpers/must-match.validator";
 })
 export class UsersComponent implements OnInit {
 
+  bsConfig?: Partial<BsDatepickerConfig>;    
+  colorTheme = globalVariables.bsDatecolorTheme;
+  bsDatePickerOp:any; 
   itemList:any = [];
   itemListSrc = [
     {id: 1, title: 'Mr', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', gender: 'Mail', description: 'Desc..',  acceptTerms: true},
@@ -27,12 +35,18 @@ export class UsersComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder
     , public dtServices: DataService
+    , public dts: DateService
   
     ) { }
   ngOnInit(): void {
+
+    console.log('bsConfig', this.bsConfig);
+    this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });
+
+    this.bsDatePickerOp = globalVariables.bsDatePickerOp;
+
     this.dtServices.setAll(this.itemListSrc);
-    this.itemList = this.dtServices.getAll();
-    console.log(' this.itemList',  this.itemList);
+    this.itemList = this.dtServices.getAll();    
     this.formInit();    
   }
   formInit(){
@@ -48,7 +62,8 @@ export class UsersComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       // validates date format yyyy-mm-dd
-      dob: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
+      //dob: ['', [Validators.required, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)]],
+      dob: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
@@ -90,6 +105,7 @@ export class UsersComponent implements OnInit {
       id: itemData.id,
       firstName: itemData.firstName,
       lastName: itemData.lastName,
+      dob: itemData.dob,
       email: itemData.email,
       title: itemData.title,
       description: itemData.description,

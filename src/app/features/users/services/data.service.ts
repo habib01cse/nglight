@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebStorageService } from 'src/app/core/services/web-storage.service';
+import { DateService } from 'src/app/shared/utility/date.service';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ export class DataService {
 
   constructor( 
     private webStorageService: WebStorageService
+    , public dts: DateService
     ) {}
   setAll(itemList){
     console.log('servicesKey', this.servicesKey);
@@ -19,7 +21,10 @@ export class DataService {
     return this.webStorageService.getItem(this.servicesKey);
   }
   save(data){
+
     console.log('data..', data);
+    data['dob'] = this.dts.getDDMMYYSlashFromDate(data.dob);
+
     let getAllItem = this.webStorageService.getItem(this.servicesKey); 
     if(data.id){
 

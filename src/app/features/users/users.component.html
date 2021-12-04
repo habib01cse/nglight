@@ -87,7 +87,10 @@
                     <div class="form-row">
                         <div class="form-group col">
                             <label>Date of Birth</label>
-                            <input type="date" formControlName="dob" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                            <input type="text" bsDatepicker
+                            [bsConfig]="bsDatePickerOp"
+                            formControlName="dob" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+
                             <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
                                 <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
                                 <div *ngIf="f.dob.errors.pattern">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
@@ -200,8 +203,8 @@
                           <td>{{ item?.email }}</td>
                           <td>{{ item?.description }}</td>
                           <td>
-                              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)">E</button>
-                              <button type="button" class="btn btn-danger btn-sm" (click)="itemDelete(item)">D</button>
+                              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)"><i class="fa fa-pencil-square-o"></i></button>
+                              <button type="button" class="btn btn-danger btn-sm" (click)="itemDelete(item)"><i class="fa fa-trash-o"></i></button>
                           </td>                               
                         </tr>                    
                       </tbody>
