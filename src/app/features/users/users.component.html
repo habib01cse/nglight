@@ -122,6 +122,15 @@
                     </div>
 
                     <div class="form-row">
+                        <div class="form-group col">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3" 
+                            formControlName="description"
+                            ></textarea>
+                        </div>
+                    </div>                        
+
+                    <div class="form-row">
                         <label for="gender">Gender:</label>
 
                         <div class="custom-control custom-radio custom-control-inline">
@@ -178,19 +187,21 @@
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Gender</th>
+                          <!-- <th>Gender</th> -->
                           <th>Email</th>
+                          <th>Desc</th>
                           <th>Action</th>            
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of itemList; let i = index; trackBy: trackByFn">                        
                           <td>{{ item?.title }} {{ item?.firstName }} {{ item?.lastName }}</td>
-                          <td>{{ item?.gender }}</td>
+                          <!-- <td>{{ item?.gender }}</td> -->
                           <td>{{ item?.email }}</td>
+                          <td>{{ item?.description }}</td>
                           <td>
-                              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)">Edit</button>
-                              <button type="button" class="btn btn-danger btn-sm" (click)="itemDelete(item)">Delete</button>
+                              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)">E</button>
+                              <button type="button" class="btn btn-danger btn-sm" (click)="itemDelete(item)">D</button>
                           </td>                               
                         </tr>                    
                       </tbody>

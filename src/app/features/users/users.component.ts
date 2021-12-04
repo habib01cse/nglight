@@ -15,10 +15,10 @@ export class UsersComponent implements OnInit {
 
   itemList:any = [];
   itemListSrc = [
-    {id: 1, title: 'Mr', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', gender: 'Mail', acceptTerms: true},
-    {id: 2, title: 'Ms', firstName: 'Kh.', lastName: 'User 2', dob: '',  email: 'user2@gmail.com', password: '', gender: 'Femail', acceptTerms: false},
-    {id: 3, title: 'Mr', firstName: 'Md.', lastName: 'User 3', dob: '',  email: 'user3@gmail.com', password: '', gender: 'Mail', acceptTerms: true},
-    {id: 4, title: 'Ms', firstName: 'Kh.', lastName: 'User 4', dob: '',  email: 'user4@gmail.com', password: '', gender: 'Femail', acceptTerms: false}
+    {id: 1, title: 'Mr', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', gender: 'Mail', description: 'Desc..',  acceptTerms: true},
+    {id: 2, title: 'Ms', firstName: 'Kh.', lastName: 'User 2', dob: '',  email: 'user2@gmail.com', password: '', gender: 'Femail', description: 'Test..', acceptTerms: false},
+    {id: 3, title: 'Mr', firstName: 'Md.', lastName: 'User 3', dob: '',  email: 'user3@gmail.com', password: '', gender: 'Mail', description: 'Ok..', acceptTerms: true},
+    {id: 4, title: 'Ms', firstName: 'Kh.', lastName: 'User 4', dob: '',  email: 'user4@gmail.com', password: '', gender: 'Femail', description: 'Check..', acceptTerms: false}
   ]
   formData: FormGroup;
   registerForm: FormGroup;
@@ -53,6 +53,7 @@ export class UsersComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
       gender: ['Mail', Validators.required],
+      description: [''],
       acceptTerms: [false, Validators.requiredTrue]
     },{
         validator: MustMatch('password', 'confirmPassword')
@@ -91,6 +92,7 @@ export class UsersComponent implements OnInit {
       lastName: itemData.lastName,
       email: itemData.email,
       title: itemData.title,
+      description: itemData.description,
       gender: itemData.gender,
       acceptTerms: itemData.acceptTerms
     });
