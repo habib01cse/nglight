@@ -5,7 +5,7 @@
             <h4>{{ langService.langData.userInformation }}</h4>
         </div>
         <div class="col-sm-3 text-right">
-            <button type="submit" class="btn btn-primary" (click)="addNew()">{{ langService.langData.addNew }}</button>        
+            <button type="submit" class="btn btn-primary btn-sm" (click)="addNew()">{{ langService.langData.addNew }}</button>        
         </div>
     </div>
 
@@ -14,7 +14,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label>{{ langService.langData.departureAirportCode }}</label>
-                    <input type="text" class="form-control" formControlName="DepartureAirportCode" maxlength="3"
+                    <input type="text" class="form-control form-control-sm" formControlName="DepartureAirportCode" maxlength="3"
                     (keypress)="keyPressAlphanumeric($event)"
                     >                        
                     <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small>                                                
@@ -24,7 +24,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="exampleInputEmail1">{{ langService.langData.arrivalAirportCode }}</label>
-                    <input type="text" class="form-control" formControlName="ArrivalAirportCode" maxlength="3"
+                    <input type="text" class="form-control form-control-sm" formControlName="ArrivalAirportCode" maxlength="3"
                     (keypress)="keyPressAlphanumeric($event)"
                     >                         
                     <small class="text-danger" *ngIf="userData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small>
@@ -33,18 +33,18 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="exampleInputEmail1">{{ langService.langData.departureDate }}</label>
-                    <input type="datetime-local" class="form-control" formControlName="DepartureDate">         
+                    <input type="datetime-local" class="form-control form-control-sm" formControlName="DepartureDate">         
                 </div>
             </div>
 
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Return date {{ langService.langData.returnDate }}</label>
-                    <input type="datetime-local" class="form-control" formControlName="ReturnDate">         
+                    <input type="datetime-local" class="form-control form-control-sm" formControlName="ReturnDate">         
                 </div>
             </div>
             <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary">{{ langService.langData.submit }}</button>
+                <button type="submit" class="btn btn-primary btn-sm">{{ langService.langData.submit }}</button>
            </div>
         </div>
     </form>
@@ -58,7 +58,7 @@
         <h4>{{ langService.langData.airlineInformation }}</h4>
       </div>
       <div class="col-sm-4">
-        <input type="text" #itemSearchInput class="form-control" placeholder="Search" />
+        <input type="text" #itemSearchInput class="form-control form-control-sm" placeholder="Search" />
       </div>
     </div>
     <br>

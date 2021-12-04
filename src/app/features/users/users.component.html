@@ -1,4 +1,180 @@
-<div class="row">
-    <div class="col-sm-3"></div>
+ 
+<div class="row">           
+    <!-- <div class="col-sm-4">
+      <div class="row">
+          <div class="col-sm-8">
+            <h4>Add new user</h4>
+          </div>
+        
+          <div class="col-sm-4 text-right">
+            <button type="submit" class="btn btn-primary btn-sm" (click)="formInit()">Add New</button>                   
+          </div>
+      </div>
+      <form [formGroup]="formData" (ngSubmit)="postDate()">
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <input type="text" hidden class="form-control form-control-sm form-control form-control-sm-sm" formControlName="id">
+                      <label>Name</label>
+                      <input type="text" class="form-control form-control-sm form-control form-control-sm-sm" formControlName="name"                            
+                      >                        
+                      <small class="text-danger" *ngIf="formData.get('name').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small>
+                  </div>
+              </div>    
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="text" class="form-control form-control-sm form-control form-control-sm-sm" formControlName="email"                            
+                      >                         
+                      <small class="text-danger" *ngIf="formData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Age</label>
+                      <input type="text" class="form-control form-control-sm form-control form-control-sm-sm" formControlName="age">         
+                  </div>
+              </div>
+              
+              <div class="col-sm-12">
+                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+          </div>
+          </div>
+      </form>
+    </div> -->
+  
+    <!-- <div class="col-sm-2"></div> -->
+
+
+    <div class="col-sm-12">
+        <!-- main app container -->
+        <div class="card m-3">
+            <h5 class="card-header">Create user Reactive form validation
+                <button type="submit" class="btn btn-primary btn-sm pull-right" (click)="formInit()">Add New</button>
+            </h5>
+            <div class="card-body">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <input type="text" hidden class="form-control form-control-sm" formControlName="id">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Title</label>
+                            <select formControlName="title" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                <option value=""></option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Ms">Ms</option>
+                            </select>
+                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                <div *ngIf="f.title.errors.required">Title is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label>First Name</label>
+                            <input type="text" formControlName="firstName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-5">
+                            <label>Last Name</label>
+                            <input type="text" formControlName="lastName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Date of Birth</label>
+                            <input type="date" formControlName="dob" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                                <div *ngIf="f.dob.errors.pattern">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <label>Email</label>
+                            <input type="text" formControlName="email" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <label>Confirm Password</label>
+                            <input type="password" formControlName="confirmPassword" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                        <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                        <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary mr-1 btn-sm">Register</button>
+                        <button class="btn btn-secondary btn-sm" type="reset" (click)="onReset()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <!-- main app container -->
+        <div class="card m-3">
+            <h5 class="card-header">User List               
+            </h5>
+            <div class="card-body">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h4>Users</h4>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" #itemSearchInput class="form-control form-control-sm form-control form-control-sm-sm" placeholder="Search" />
+                      </div>
+                      
+                    </div>
+                    <br>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Action</th>            
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of itemList; let i = index; trackBy: trackByFn">                        
+                          <td>{{ item?.title }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                          <td>{{ item?.email }}</td>
+                          <td>
+                              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)">Edit</button>
+                              <button type="button" class="btn btn-danger btn-sm" (click)="itemDelete(item)">Delete</button>
+                          </td>                               
+                        </tr>                    
+                      </tbody>
+                    </table>
+                  </div>   
+            </div>
+        </div>
+    </div>
+  
+
     
-</div>
+  </div>
