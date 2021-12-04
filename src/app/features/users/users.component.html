@@ -46,7 +46,7 @@
     <!-- <div class="col-sm-2"></div> -->
 
 
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <!-- main app container -->
         <div class="card m-3">
             <h5 class="card-header">Create user Reactive form validation
@@ -120,13 +120,36 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-row">
+                        <label for="gender">Gender:</label>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline1" 
+                            name="gender"
+                            formControlName="gender"
+                            value="Mail" 
+                            class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline1">Mail</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline2"
+                            name="gender"
+                            formControlName="gender"
+                            value="Femail"
+                            class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline2">Femail</label>
+                        </div>
+                    </div>
+
+
                     <div class="form-group form-check">
                         <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
                         <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
                         <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
                     </div>
                     <div class="text-right">
-                        <button class="btn btn-primary mr-1 btn-sm">Register</button>
+                        <button class="btn btn-primary mr-1 btn-sm">Save</button>
                         <button class="btn btn-secondary btn-sm" type="reset" (click)="onReset()">Cancel</button>
                     </div>
                 </form>
@@ -134,7 +157,7 @@
         </div>
     </div>
 
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <!-- main app container -->
         <div class="card m-3">
             <h5 class="card-header">User List               
@@ -155,6 +178,7 @@
                       <thead>
                         <tr>
                           <th>Name</th>
+                          <th>Gender</th>
                           <th>Email</th>
                           <th>Action</th>            
                         </tr>
@@ -162,6 +186,7 @@
                       <tbody>
                         <tr *ngFor="let item of itemList; let i = index; trackBy: trackByFn">                        
                           <td>{{ item?.title }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                          <td>{{ item?.gender }}</td>
                           <td>{{ item?.email }}</td>
                           <td>
                               <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)">Edit</button>

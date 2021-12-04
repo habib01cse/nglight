@@ -15,10 +15,10 @@ export class UsersComponent implements OnInit {
 
   itemList:any = [];
   itemListSrc = [
-    {id: 1, title: 'Mr.', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', acceptTerm: true},
-    {id: 2, title: 'Mr.', firstName: 'Md.', lastName: 'User 2', dob: '',  email: 'user2@gmail.com', password: '', acceptTerm: true},
-    {id: 3, title: 'Mr.', firstName: 'Md.', lastName: 'User 3', dob: '',  email: 'user3@gmail.com', password: '', acceptTerm: true},
-    {id: 4, title: 'Mr.', firstName: 'Md.', lastName: 'User 4', dob: '',  email: 'user4@gmail.com', password: '', acceptTerm: true}
+    {id: 1, title: 'Mr', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', gender: 'Mail', acceptTerms: true},
+    {id: 2, title: 'Ms', firstName: 'Kh.', lastName: 'User 2', dob: '',  email: 'user2@gmail.com', password: '', gender: 'Femail', acceptTerms: false},
+    {id: 3, title: 'Mr', firstName: 'Md.', lastName: 'User 3', dob: '',  email: 'user3@gmail.com', password: '', gender: 'Mail', acceptTerms: true},
+    {id: 4, title: 'Ms', firstName: 'Kh.', lastName: 'User 4', dob: '',  email: 'user4@gmail.com', password: '', gender: 'Femail', acceptTerms: false}
   ]
   formData: FormGroup;
   registerForm: FormGroup;
@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
     //Validators.pattern(validPattern)]
     this.registerForm = this.formBuilder.group({
       id: new FormControl(),
-      title: ['', Validators.required],
+      title: ['Mr', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       // validates date format yyyy-mm-dd
@@ -52,6 +52,7 @@ export class UsersComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
+      gender: ['Mail', Validators.required],
       acceptTerms: [false, Validators.requiredTrue]
     },{
         validator: MustMatch('password', 'confirmPassword')
@@ -82,13 +83,31 @@ export class UsersComponent implements OnInit {
   }
 
   itemEdit(itemData){
+    console.log('itemData', itemData);
+
     this.registerForm.patchValue({
       id: itemData.id,
       firstName: itemData.firstName,
       lastName: itemData.lastName,
       email: itemData.email,
-      title: itemData.title
+      title: itemData.title,
+      gender: itemData.gender,
+      acceptTerms: itemData.acceptTerms
     });
+
+    // this.registerForm = this.formBuilder.group({
+    //   id: [itemData.id],
+    //   title: [itemData.title],
+    //   firstName: [itemData.firstName],
+    //   lastName: [itemData.lastName],
+    //   // validates date format yyyy-mm-dd
+    //   dob: [itemData.dob],
+    //   email: [itemData.email],
+    //   password: [itemData.password],
+    //   confirmPassword: [itemData.password],
+    //   gender: [itemData.gender],
+    //   acceptTerms: [itemData.acceptTerms]
+    // });
   }
 
   itemDelete(itemData){  

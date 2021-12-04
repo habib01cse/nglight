@@ -19,15 +19,14 @@ export class DataService {
     return this.webStorageService.getItem(this.servicesKey);
   }
   save(data){
+    console.log('data..', data);
     let getAllItem = this.webStorageService.getItem(this.servicesKey); 
     if(data.id){
 
       for( var i = 0; i < getAllItem.length; i++ ){
         let obj = getAllItem[i];
         if(data.id == obj.id){
-          obj['firstName'] = data.name;
-          obj['lastName'] = data.cat;
-          obj['email'] = data.price; 
+          obj = data;          
           getAllItem[i] = obj;      
         }
       }

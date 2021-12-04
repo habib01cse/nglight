@@ -86,9 +86,6 @@ export class AppComponent implements OnInit {
   }
 
   getDepth(outlet) {
-    console.log('outlet', outlet);
-    console.log('outlet.activatedRouteData', outlet.activatedRouteData);
-
     return outlet.activatedRouteData.state;
   }
 
