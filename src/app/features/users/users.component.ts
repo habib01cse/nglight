@@ -21,12 +21,39 @@ export class UsersComponent implements OnInit {
   bsConfig?: Partial<BsDatepickerConfig>;    
   colorTheme = globalVariables.bsDatecolorTheme;
   bsDatePickerOp:any; 
+
+  titleArr = [
+    { value: 'Mr', text: 'Mr' },
+    { value: 'Mrs', text: 'Mrs' },
+    { value: 'Miss', text: 'Miss' },
+    { value: 'Ms', text: 'Ms' },
+      
+  ];
+
+  isSkillControlVisible = true;
+  skillArr: any[] = [
+      { id: 1, name: 'Javascript' },
+      { id: 2, name: 'TypeScript' },
+      { id: 3, name: 'Angular'},
+      { id: 4, name: 'Reactjs' },
+      { id: 5, name: 'VueJs' },
+      { id: 6, name: 'Rxjs' },
+      { id: 7, name: 'Bootstrap' },
+      { id: 8, name: 'PhP' },
+      { id: 9, name: 'MySql' },
+      { id: 10, name: 'Larave' },
+      { id: 11, name: 'WordPress' },
+      { id: 12, name: '.Net C#', disabled: true },
+      { id: 13, name: '.Net MVC Core', disabled: true },
+  ];
+
+
   itemList:any = [];
   itemListSrc = [
-    {id: 1, title: 'Mr', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', gender: 'Mail', description: 'Desc..',  acceptTerms: true},
-    {id: 2, title: 'Ms', firstName: 'Kh.', lastName: 'User 2', dob: '',  email: 'user2@gmail.com', password: '', gender: 'Femail', description: 'Test..', acceptTerms: false},
-    {id: 3, title: 'Mr', firstName: 'Md.', lastName: 'User 3', dob: '',  email: 'user3@gmail.com', password: '', gender: 'Mail', description: 'Ok..', acceptTerms: true},
-    {id: 4, title: 'Ms', firstName: 'Kh.', lastName: 'User 4', dob: '',  email: 'user4@gmail.com', password: '', gender: 'Femail', description: 'Check..', acceptTerms: false}
+    {id: 1, title: 'Mr', firstName: 'Md.', lastName: 'User 1', dob: '',  email: 'user1@gmail.com', password: '', gender: 'Mail', description: 'Desc..', selectedSkillds: [1, 2],  acceptTerms: true},
+    {id: 2, title: 'Ms', firstName: 'Kh.', lastName: 'User 2', dob: '',  email: 'user2@gmail.com', password: '', gender: 'Femail', description: 'Test..', selectedSkillds: [1, 5, 2], acceptTerms: false},
+    {id: 3, title: 'Mr', firstName: 'Md.', lastName: 'User 3', dob: '',  email: 'user3@gmail.com', password: '', gender: 'Mail', description: 'Ok..', selectedSkillds: [1, 3, 6, 9], acceptTerms: true},
+    {id: 4, title: 'Ms', firstName: 'Kh.', lastName: 'User 4', dob: '',  email: 'user4@gmail.com', password: '', gender: 'Femail', description: 'Check..', selectedSkillds: [1, 7, 8, 10], acceptTerms: false}
   ]
   formData: FormGroup;
   registerForm: FormGroup;
@@ -41,7 +68,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
 
     console.log('bsConfig', this.bsConfig);
-    this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });
+    //this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });
 
     this.bsDatePickerOp = globalVariables.bsDatePickerOp;
 
@@ -69,6 +96,7 @@ export class UsersComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       gender: ['Mail', Validators.required],
       description: [''],
+      selectedSkillds: [],
       acceptTerms: [false, Validators.requiredTrue]
     },{
         validator: MustMatch('password', 'confirmPassword')
@@ -79,6 +107,9 @@ export class UsersComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+
+    console.log('this.registerForm.value', this.registerForm.value);
+
       this.submitted = true;
       // stop here if form is invalid
       if (this.registerForm.invalid) {
@@ -110,6 +141,7 @@ export class UsersComponent implements OnInit {
       title: itemData.title,
       description: itemData.description,
       gender: itemData.gender,
+      selectedSkillds: itemData.selectedSkillds,
       acceptTerms: itemData.acceptTerms
     });
 

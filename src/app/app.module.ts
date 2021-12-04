@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -37,6 +38,7 @@ import { UsersComponent } from './features/users/users.component';
     FormsModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
+    NgSelectModule,
     ReactiveFormsModule,
     CoreModule,
     SharedModule

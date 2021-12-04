@@ -57,6 +57,13 @@
                     <input type="text" hidden class="form-control form-control-sm" formControlName="id">
                     <div class="form-row">
                         <div class="form-group col">
+                            <label>Ng select</label>
+                            <ng-select formControlName="title">                                
+                                <ng-option *ngFor="let item of titleArr" [value]="item.value">{{item.text}}</ng-option>
+                            </ng-select>
+                        </div>
+
+                        <!-- <div class="form-group col">
                             <label>Title</label>
                             <select formControlName="title" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
                                 <option value=""></option>
@@ -68,15 +75,16 @@
                             <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
                                 <div *ngIf="f.title.errors.required">Title is required</div>
                             </div>
-                        </div>
-                        <div class="form-group col-5">
+                        </div>-->
+                    
+                        <div class="form-group col">
                             <label>First Name</label>
                             <input type="text" formControlName="firstName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
                             </div>
                         </div>
-                        <div class="form-group col-5">
+                        <div class="form-group col">
                             <label>Last Name</label>
                             <input type="text" formControlName="lastName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                             <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
@@ -124,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row">                        
                         <div class="form-group col">
                             <label for="description">Description</label>
                             <textarea class="form-control" id="description" rows="3" 
@@ -154,6 +162,21 @@
                         </div>
                     </div>
 
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">City</label>
+                            <ng-select *ngIf="isSkillControlVisible"
+                                [items]="skillArr"
+                                bindLabel="name"
+                                bindValue="id"
+                                labelForId="state"
+                                [multiple]="true"
+                                placeholder="Select skill"
+                                clearAllText="Clear"
+                                formControlName="selectedSkillds">
+                            </ng-select>                            
+                        </div>
+                    </div>
 
                     <div class="form-group form-check">
                         <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
