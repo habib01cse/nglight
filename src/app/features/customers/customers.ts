@@ -23,6 +23,8 @@ export class Customers implements OnInit {
   colorTheme = globalVariables.bsDatecolorTheme;
   bsDatePickerOp:any; 
 
+  statusNgContainer = false;
+
   titleArr = [
     { value: 'Mr', text: 'Mr' },
     { value: 'Mrs', text: 'Mrs' },

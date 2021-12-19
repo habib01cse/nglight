@@ -49,9 +49,12 @@
     <div class="col-sm-6">
         <!-- main app container -->
         <div class="card m-3">
+
+            
             <h5 class="card-header">Create Customer Template Driven Form
                 <button type="submit" class="btn btn-primary btn-sm pull-right" (click)="onClickAddNew()">Add New</button>
-            </h5>
+            </h5>                
+
             <div class="card-body">
                 <form>
                     <!-- <input type="text" hidden class="form-control form-control-sm" formControlName="id"> -->
@@ -167,6 +170,29 @@
                         id="acceptTerms" class="form-check-input"/>
                         <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>                       
                     </div>
+
+                    <ng-container *ngIf="statusNgContainer else test"> 
+                        <div class="col-sm-12">
+                            <h6>Ng Container</h6>
+                        </div>            
+                    </ng-container> 
+
+                    <ng-template #test>
+                        <div class="col-sm-12">
+                            <h6>Ng template</h6>
+                        </div>   
+                    </ng-template>
+
+                    <!-- <ng-content>
+                        <ng-template>
+                            <div class="col-sm-12">
+                                <h6>Ng content</h6>
+                            </div>
+                        </ng-template>
+                    </ng-content> -->
+                    
+
+
                     <div class="text-right">
                         <button type="button" class="btn btn-primary mr-1 btn-sm" (click)="onClickSave()">Save</button>
                         <button class="btn btn-secondary btn-sm" type="reset" (click)="onReset()">Cancel</button>
