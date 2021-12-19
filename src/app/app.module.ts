@@ -7,9 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NgSelectModule } from '@ng-select/ng-select';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -17,30 +14,31 @@ import { LanguageResolver } from './core/services/language-resolver';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
+import { VendorModule } from './shared/vendor/vendor.module';
 import { SharedModule } from './shared/shared.module';
 
 
 import { AirlineComponent } from './features/airline/airline.component';
 import { UsersComponent } from './features/users/users.component';
+import { Customers } from './features/customers/customers';
 
 
 @NgModule({
   declarations: [
     AppComponent,   
     AirlineComponent,
-    UsersComponent 
+    UsersComponent,
+    Customers 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    BsDatepickerModule.forRoot(),
-    ModalModule.forRoot(),
-    NgSelectModule,
+    FormsModule,    
     ReactiveFormsModule,
     CoreModule,
+    VendorModule,
     SharedModule
   ],
   providers: [LanguageResolver],

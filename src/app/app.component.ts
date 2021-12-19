@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,  } from '@angular/forms';
 import { trigger, state, transition, style, animate, query, group, keyframes } from '@angular/animations';
 import { DataService } from 'src/app/features/airline/services/data.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -77,12 +78,18 @@ export class AppComponent implements OnInit {
   
   airlineInfoList: any = [];
   userData: FormGroup;
-  constructor( ){
+  constructor( private spinner: NgxSpinnerService ){
    
   }
 
   ngOnInit(): void{
-    
+    /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 300);
   }
 
   getDepth(outlet) {

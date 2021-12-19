@@ -1,0 +1,9 @@
+{
+    "userInformation": "User Information",
+    "departureAirportCode": "Departure airport code",
+    "arrivalAirportCode": "Arrival airport code",
+    "departureDate": "Departure date",
+    "returnDate": "Return date",
+    "addNew":"Add New",
+    "submit": "Submit"
+}

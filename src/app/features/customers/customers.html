@@ -1,0 +1,226 @@
+ 
+<div class="row">           
+    <!-- <div class="col-sm-4">
+      <div class="row">
+          <div class="col-sm-8">
+            <h4>Add new Customer</h4>
+          </div>
+        
+          <div class="col-sm-4 text-right">
+            <button type="submit" class="btn btn-primary btn-sm" (click)="formInit()">Add New</button>                   
+          </div>
+      </div>
+      <form [formGroup]="formData" (ngSubmit)="postDate()">
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <input type="text" hidden class="form-control form-control-sm form-control form-control-sm-sm" formControlName="id">
+                      <label>Name</label>
+                      <input type="text" class="form-control form-control-sm form-control form-control-sm-sm" formControlName="name"                            
+                      >                        
+                      <small class="text-danger" *ngIf="formData.get('name').hasError('maxLength')">{{ langService.langData.airlineLogo }}Max length is 3 character</small>
+                  </div>
+              </div>    
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="text" class="form-control form-control-sm form-control form-control-sm-sm" formControlName="email"                            
+                      >                         
+                      <small class="text-danger" *ngIf="formData.get('DepartureAirportCode').hasError('maxLength')">Max length is 3 character {{ langService.langData.airlineLogo }}</small>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Age</label>
+                      <input type="text" class="form-control form-control-sm form-control form-control-sm-sm" formControlName="age">         
+                  </div>
+              </div>
+              
+              <div class="col-sm-12">
+                  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+          </div>
+          </div>
+      </form>
+    </div> -->
+  
+    <!-- <div class="col-sm-2"></div> -->
+
+
+    <div class="col-sm-6">
+        <!-- main app container -->
+        <div class="card m-3">
+            <h5 class="card-header">Create Customer Template Driven Form
+                <button type="submit" class="btn btn-primary btn-sm pull-right" (click)="onClickAddNew()">Add New</button>
+            </h5>
+            <div class="card-body">
+                <form>
+                    <!-- <input type="text" hidden class="form-control form-control-sm" formControlName="id"> -->
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Ng select</label>
+                            <ng-select 
+                            [(ngModel)]="model.customer.TITLE"
+                            name="TITLE"
+                            >                                
+                                <ng-option *ngFor="let item of titleArr" [value]="item.value">{{item.text}}</ng-option>
+                            </ng-select>
+                        </div>
+
+                        <!-- <div class="form-group col">
+                            <label>Title</label>
+                            <select formControlName="title" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                <option value=""></option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Ms">Ms</option>
+                            </select>
+                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                <div *ngIf="f.title.errors.required">Title is required</div>
+                            </div>
+                        </div>-->
+                    
+                              
+
+                        <div class="form-group col">
+                            <label>Name</label>
+                            <input type="text" 
+                            [(ngModel)]="model.customer.NAME"
+                            name="NAME"
+                            class="form-control form-control-sm"/>                            
+                        </div>
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label>Date of Birth</label>
+                            <input type="text" 
+                            [(ngModel)]="model.customer.DOB"
+                            name="DOB"
+                            bsDatepicker
+                            [bsConfig]="bsDatePickerOp"                        
+                            class="form-control form-control-sm"/>
+
+                        </div>
+                        <div class="form-group col">
+                            <label>Email</label>
+                            <input type="text" 
+                            [(ngModel)]="model.customer.EMAIL"
+                            name="EMAIL"
+                            class="form-control form-control-sm"/>
+                            
+                        </div>
+                    </div>
+                  
+
+                    <div class="form-row">                        
+                        <div class="form-group col">
+                            <label for="description">Description {{ model.customer.DESTRUCTION }}</label>
+                            <textarea class="form-control" id="description" rows="3" 
+                            [(ngModel)]="model.customer.DESTRUCTION"
+                            name="DESTRUCTION"
+                            ></textarea>
+                        </div>
+                    </div>                        
+
+                    <div class="form-row">
+                        <label for="gender">Gender:</label>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline1" 
+                            [(ngModel)]="model.customer.GENDER"
+                            name="GENDER"
+                            value="Mail" 
+                            class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline1">Mail</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="customRadioInline2"
+                            [(ngModel)]="model.customer.GENDER"
+                            name="GENDER"
+                            value="Femail"
+                            class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline2">Femail</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">City</label>
+                            <ng-select *ngIf="isSkillControlVisible"
+                                [items]="skillArr"
+                                bindLabel="name"
+                                bindValue="id"
+                                labelForId="state"
+                                [multiple]="true"
+                                placeholder="Select skill"
+                                clearAllText="Clear"
+                                >
+                            </ng-select>                            
+                        </div>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input type="checkbox"
+                        [(ngModel)]="model.customer.ACCEPT_TERMS"
+                        name="ACCEPT_TERMS"
+                        id="acceptTerms" class="form-check-input"/>
+                        <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>                       
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-primary mr-1 btn-sm" (click)="onClickSave()">Save</button>
+                        <button class="btn btn-secondary btn-sm" type="reset" (click)="onReset()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <!-- main app container -->
+        <div class="card m-3">
+            <h5 class="card-header">Customer List               
+            </h5>
+            <div class="card-body">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h4>Customer</h4>
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" #itemSearchInput class="form-control form-control-sm form-control form-control-sm-sm" placeholder="Search" />
+                      </div>
+                      
+                    </div>
+                    <br>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <!-- <th>Gender</th> -->
+                          <th>Email</th>
+                          <th>Desc</th>
+                          <th>Action</th>            
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of itemList; let i = index; trackBy: trackByFn">                        
+                          <td>{{ item?.TITLE }} {{ item?.NAME }}</td>
+                          <!-- <td>{{ item?.GENDER }}</td> -->
+                          <td>{{ item?.EMAIL }}</td>
+                          <td>{{ item?.DESCRIPTION }}</td>
+                          <td>
+                              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="itemEdit(item)"><i class="fa fa-pencil-square-o"></i></button>
+                              <button type="button" class="btn btn-danger btn-sm" (click)="itemDelete(item)"><i class="fa fa-trash-o"></i></button>
+                          </td>                               
+                        </tr>                    
+                      </tbody>
+                    </table>
+                  </div>   
+            </div>
+        </div>
+    </div>
+  
+
+    
+  </div>

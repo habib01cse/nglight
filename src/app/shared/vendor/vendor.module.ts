@@ -2,10 +2,18 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { ToastrModule } from 'ngx-toastr';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
     imports: [
-        FormsModule,        
+        FormsModule,  
+        BsDatepickerModule.forRoot(),
+        ModalModule.forRoot(),
+        NgSelectModule,
+        NgxSpinnerModule,      
         ToastrModule.forRoot({
             timeOut: 4000,
             extendedTimeOut: 4000,
@@ -14,6 +22,10 @@ import { ToastrModule } from 'ngx-toastr';
         })        
     ],
     exports: [      
+        BsDatepickerModule,
+        ModalModule,
+        NgSelectModule,
+        NgxSpinnerModule,
         ToastrModule
     ],
     declarations: [
